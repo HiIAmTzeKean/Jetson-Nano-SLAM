@@ -1,0 +1,7 @@
+[submodule "ORB_SLAM2_CUDA"]
+	path = ORB_SLAM2_CUDA
+	url = https://github.com/HiIAmTzeKean/ORB_SLAM2_CUDA
+
+[submodule "srv_tools"]
+	path = /src/srv_tools
+	url = https://github.com/HiIAmTzeKean/srv_tools
