@@ -1,0 +1,47 @@
+gnome-terminal -- sh -c "roscore;bash"
+sleep 5
+
+# using usb camera
+gnome-terminal -- sh -c "rosrun usb_cam usb_cam_node _camera_name:="camera1" _video_device:="/dev/video1""
+
+gnome-terminal -- sh -c "rosrun usb_cam usb_cam_node _camera_name:="camera0" _video_device:="/dev/video0""
+
+# using cv_camera
+rosparam set cv_camera/device_id 1
+rosrun cv_camera cv_camera_node _camera_name:="camera"
+source orb_slam2/devel/setup.bash
+export ROS_PACKAGE_PATH=~/orb_slam_2_ros/orb_slam2/src:${ROS_PACKAGE_PATH}
+export ROS_PACKAGE_PATH=~/orb_slam_2_ros/:${ROS_PACKAGE_PATH}
+roslaunch orb_slam2_ros orb_slam2cam_mono.launch
+
+#############################################################
+################## Init srv_tools to use bag_tools ##########
+#############################################################
+# Set up srv_tools
+git clone https://github.com/srv/srv_tools.git src/srv_tools
+# Install dependencies
+rosdep install --from-paths src --ignore-src --rosdistro melodic
+# Install bag_tools package
+catkin_make install --pkg bag_tools
+export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:~/Jetson-Nano-SLAM/src/srv_tools
+
+
+
+#############################################################
+# Use real camera implementation
+#############################################################
+rosrun usb_cam usb_cam_node image:="camera" _video_device:="/dev/video1" _pixel_format:="yuyv" _camera_name:="camera" _framerate:=1
+rosrun image_transport republish raw in:=usb_cam/image_raw out:=camera/image_raw
+
+#############################################################
+# use recorded camera implementation
+#############################################################
+source devel/setup.bash
+roslaunch bag_tools img_pub.launch
+rosrun image_transport republish raw in:=/camera/image_color out:=camera/image_raw
+
+#############################################################
+# Launch orb slam
+#############################################################
+export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:~/Jetson-Nano-SLAM/ORB_SLAM2_CUDA/Examples/ROS
+roslaunch ~/Jetson-Nano-SLAM/ORB_SLAM2_CUDA/Examples/ROS/ORB_SLAM2_CUDA/launch/ros_mono.launch
