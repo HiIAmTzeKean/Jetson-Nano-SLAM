@@ -2,6 +2,10 @@
 	path = ORB_SLAM2_CUDA
 	url = https://github.com/HiIAmTzeKean/ORB_SLAM2_CUDA
 
-[submodule "srv_tools"]
-	path = /src/srv_tools
+[submodule "jetson-multicamera-pipelines"]
+	path = jetson-multicamera-pipelines
+	url = https://github.com/HiIAmTzeKean/jetson-multicamera-pipelines
+
+[submodule "src/srv_tools"]
+	path = src/srv_tools
 	url = https://github.com/HiIAmTzeKean/srv_tools
