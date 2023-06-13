@@ -59,7 +59,8 @@ CATKIN_IGNORE
 # Built Visual Studio Code Extensions
 *.vsix
 
+# Others
 imageDir/*
-
-
 install/*
+setup.sh
+rosSetup
