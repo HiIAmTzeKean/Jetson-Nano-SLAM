@@ -2,7 +2,7 @@
 
 ## Background
 
-This project is a Nanyang Technological University (NTU) Undergraduate Research Experience on CAmpus (URECA).
+This project is a Nanyang Technological University (NTU) Undergraduate Research Experience on CAmpus (URECA) under the supervision of [Professor Lam Siew Kei](https://siewkeilam.github.io/ei-research-group/research.html).
 
 Refer to the referenced submodules:
 
@@ -14,7 +14,7 @@ These are modules that were forked and modified to fit the project scope.
 
 ## Aim
 
-Explore the use of dual cameras and its impact on SLAM.
+This investigation focuses on improving the localization robustness of ORB-SLAM by employing dual cameras and real-time image stitching on the Nvidia Jetson embedded system. The primary objective is to explore the feasibility and effectiveness of this approach in scenarios with challenges such as fast camera movement, limited distinct features, poor lighting conditions, and the presence of dynamic objects.
 
 ## Specifications
 
@@ -25,9 +25,9 @@ Explore the use of dual cameras and its impact on SLAM.
 
 ### Software tested
 
-OS: Linux Ubuntu 18.04.6 LTS
-Packages: Nvidia Jetpack 4.5.1-b17, DeepstreamSDK 5.1.0, OpenCV 4.1.0
-ROS distribution: melodic
+OS: Linux Ubuntu 18.04.6 LTS  
+Packages: Nvidia Jetpack 4.5.1-b17, DeepstreamSDK 5.1.0, OpenCV 4.1.0  
+ROS distribution: melodic  
 
 ## Installation
 
